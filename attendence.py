@@ -68,15 +68,64 @@ def index():
 
 @app.route("/add_attendance",methods=["GET","POST"])
 def add_attendance():
-        l=[]
-        db = pymysql.connect('localhost', 'root', '', 'flask')
-        sql = "select * from stu_info"
-        cur = db.cursor()
-        cur.execute(sql)
-        result = cur.fetchall()
-        for row in result:
-            l.append(row[0])
-        return render_template("index2.html", s=l)
+        if request.method == "POST":
+            a = request.form["attendance1"]
+            b = request.form["attendance2"]
+            c = request.form["attendance3"]
+            d = request.form["attendance4"]
+            e = request.form["attendance5"]
+            f = request.form["attendance6"]
+            g = request.form["attendance7"]
+            h = request.form["attendance8"]
+            i = request.form["attendance9"]
+            j = request.form["attendance10"]
+            k = request.form["attendance11"]
+            l = request.form["attendance12"]
+            m = request.form["attendance13"]
+            n = request.form["attendance14"]
+            o = request.form["attendance15"]
+            p = request.form["attendance16"]
+            q = request.form["attendance17"]
+            r = request.form["attendance18"]
+            s = request.form["attendance19"]
+            t = request.form["attendance20"]
+            u = request.form["attendance21"]
+            v = request.form["attendance22"]
+            w = request.form["attendance23"]
+            x = request.form["attendance24"]
+            y = request.form["attendance25"]
+            z = request.form["attendance26"]
+            aa = request.form["attendance27"]
+            ab = request.form["attendance28"]
+            ac = request.form["attendance29"]
+            ad = request.form["attendance30"]
+            ae = request.form["attendance31"]
+            af = request.form["attendance32"]
+            ag = request.form["attendance33"]
+            ah = request.form["attendance34"]
+            ai = request.form["attendance35"]
+            aj = request.form["attendance36"]
+            ak = request.form["attendance37"]
+            al = request.form["attendance38"]
+            am = request.form["attendance39"]
+            an = request.form["attendance40"]
+            db = pymysql.connect('localhost', 'root', '', 'flask')
+            sql = "insert into attendance value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            val = (a, b, c, d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an)
+            cur = db.cursor()
+            cur.execute(sql, val)
+            db.commit()
+        return render_template("add_attendance.html")
+
+        # l=[]
+        # db = pymysql.connect('localhost', 'root', '', 'flask')
+        # sql = "select * from stu_info"
+        # cur = db.cursor()
+        # cur.execute(sql)
+        # result = cur.fetchall()
+        # for row in result:
+        #     l.append(row[0])
+        # return render_template("index2.html", s=l)
 
 @app.route("/k",methods=["GET","POST"])
 def show1():
@@ -87,7 +136,7 @@ def show1():
         c = request.form["p"]
         d = request.form["q"]
         db = pymysql.connect('localhost', 'root', '', 'flask')
-        sql = "insert into stu_register value(%s,%s,%s,%s)"
+        sql = "insert into stu_registers value(%s,%s,%s,%s)"
         val = (a, b, c, d)
         cur = db.cursor()
         cur.execute(sql, val)
@@ -120,12 +169,12 @@ def check():
         m =request.form["x"]
         n = request.form["y"]
         db = pymysql.connect('localhost', 'root', '', 'flask')
-        sql = "select * from stu_register"
+        sql = "select * from stu_registers"
         cur = db.cursor()
         cur.execute(sql)
         result=cur.fetchall()
         for row in result:
-            if m==row[0] and n==row[2]:
+            if m==row[1] and n==row[3]:
                 c=c+1
         if c==1:
             return render_template("add.html")
